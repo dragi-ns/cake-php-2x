@@ -1,0 +1,36 @@
+services:
+  # web - a apache2/php in this case
+  web:
+    build:
+      dockerfile: ./php/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    volumes:
+      - /var/www/html/app/tmp
+      - ./cake-php:/var/www/html
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+  # db - mysql in this case
+  db:
+    image: mysql:5
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+volumes:
+  mysqldata: {}
