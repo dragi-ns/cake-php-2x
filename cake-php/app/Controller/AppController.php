@@ -40,9 +40,8 @@ class AppController extends Controller {
 				'action' => 'index'
 			],
 			'logoutRedirect' => [
-				'controller' => 'pages',
-				'action' => 'display',
-				'home'
+				'controller' => 'posts',
+				'action' => 'index',
 			],
 			'authenticate' => [
 				'Form' => [
@@ -61,6 +60,7 @@ class AppController extends Controller {
 		if (isset($user['role']) && $user['role'] === 'admin') {
 			return true;
 		}
+		$this->Flash->error(__('You are not authorized to access that page.'));
 		return false;
 	}
 }

@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (username, password, role, created)
-    VALUES ('dragi-ns', 'totally-not-plain-password', 'admin', NOW());
+    VALUES ('dragi-ns', '$2a$10$zi6JaQnXsCHMT2zCUHSc0eiqphIsVHprT2UmeBuyxCVLnFzAlqsf6', 'admin', NOW());
 
 INSERT INTO users (username, password, role, created)
-    VALUES ('user', 'plain-password', 'author', NOW());
+    VALUES ('user', '$2a$10$zi6JaQnXsCHMT2zCUHSc0eiqphIsVHprT2UmeBuyxCVLnFzAlqsf6', 'author', NOW());
